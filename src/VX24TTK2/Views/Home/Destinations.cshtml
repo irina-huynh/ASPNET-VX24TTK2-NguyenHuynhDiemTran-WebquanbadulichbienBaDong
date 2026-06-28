@@ -1,0 +1,98 @@
+﻿@model List<VX24TTK2.Models.Destination>
+
+
+
+@{
+    ViewBag.Title = "Điểm đến";
+}
+
+<style>
+    .destination-row {
+        border: none;
+        border-radius: 22px;
+        overflow: hidden;
+        transition: .25s;
+    }
+
+        .destination-row:hover {
+            transform: translateY(-4px);
+        }
+
+    .destination-img {
+        height: 100%;
+        min-height: 230px;
+        width: 100%;
+        object-fit: cover;
+        background: linear-gradient(135deg,#BEE9E8,#00A6A6);
+    }
+
+    .badge-type {
+        background: #E7F6F7;
+        color: #006D77;
+        padding: 6px 12px;
+        border-radius: 30px;
+        font-weight: 600;
+    }
+
+    .price-text {
+        color: #E76F51;
+        font-weight: 800;
+        font-size: 18px;
+    }
+</style>
+
+<div class="container mt-5">
+
+    <h2 class="mb-4 fw-bold">🏖️ Tất cả điểm đến</h2>
+
+    @foreach (var item in Model)
+    {
+        <div class="card destination-row shadow mb-4">
+            <div class="row g-0 align-items-stretch">
+
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl"
+                             class="destination-img" />
+                    }
+                    else
+                    {
+                        <div class="destination-img d-flex align-items-center justify-content-center text-white fw-bold">
+                            @item.Type
+                        </div>
+                    }
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card-body p-4">
+
+                        <span class="badge-type">@item.Type</span>
+
+                        <h4 class="mt-3 fw-bold">@item.Name</h4>
+
+                        <p class="text-muted mb-2">
+                            📍 @item.Address
+                        </p>
+
+                        <p>
+                            @item.Description
+                        </p>
+
+                        <p class="price-text">
+                            @(item.Price == 0 ? "Miễn phí" : item.Price.ToString("N0") + " đ")
+                        </p>
+
+                        <a href="/Home/DestinationDetail/@item.Id"
+                           class="btn btn-primary">
+                            Xem chi tiết
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>

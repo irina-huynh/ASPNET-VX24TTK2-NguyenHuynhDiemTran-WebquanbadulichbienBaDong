@@ -1,0 +1,28 @@
+﻿@model List<VX24TTK2.Models.TourSchedule>
+
+<div class="container mt-5">
+
+    <h2>🗓️ Lịch trình tham quan</h2>
+
+    <table class="table table-bordered mt-4">
+
+        <tr>
+            <th>Tour</th>
+            <th>Ngày</th>
+            <th>Thời gian</th>
+            <th>Nội dung</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>Ngày @item.DayNumber</td>
+                <td>@item.TimeText</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+
+    </table>
+
+</div>

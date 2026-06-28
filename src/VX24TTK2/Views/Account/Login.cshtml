@@ -1,0 +1,107 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng nhập</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(135deg,#006D77,#00A6A6);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #006D77;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #006D77;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .error {
+            background: #ffe1e1;
+            color: red;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+            .link a {
+                color: #006D77;
+                font-weight: bold;
+                text-decoration: none;
+            }
+    </style>
+</head>
+
+<body>
+    <form class="login-box" method="post">
+        <h2>ĐĂNG NHẬP</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="error">@ViewBag.Error</div>
+        }
+
+        <input type="text"
+               name="username"
+               placeholder="Tên đăng nhập" />
+
+        <input type="password"
+               name="password"
+               placeholder="Mật khẩu" />
+
+        <button type="submit">
+            Đăng nhập
+        </button>
+
+        <div class="link">
+            <a href="/Account/ForgotPassword">Quên mật khẩu?</a>
+            <br /><br />
+            <a href="/User/Register">Chưa có tài khoản? Đăng ký</a>
+            <br /><br />
+            <a href="/Home">← Quay lại trang chủ</a>
+        </div>
+    </form>
+</body>
+</html>

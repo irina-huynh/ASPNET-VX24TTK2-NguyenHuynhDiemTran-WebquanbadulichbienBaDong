@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Ba Động Tour", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fw-bold" })
+
+            <button type="button" class="navbar-toggler"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <ul class="navbar-nav me-auto">
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Điểm đến", "Destinations", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Lịch trình", "Schedules", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Công ty du lịch", "Companies", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Liên hệ", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                   <li>@Html.ActionLink("Đánh giá", "Reviews", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    @if (Session["Role"] == null)
+                    {
+                        <li>
+                            <a href="/Account/Login" class="nav-link text-warning fw-bold">
+                                Đăng nhập
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                <li>
+                    <a href="@Url.Action("Profile","User")"
+                       class="nav-link text-warning fw-bold">
+                        Xin chào @Session["UserName"]
+                    </a>
+                </li>
+
+                        if (Session["Role"].ToString() == "Admin")
+                        {
+                            <li>
+                                <a href="/Admin/Dashboard" class="nav-link">
+                                    Quản trị
+                                </a>
+                            </li>
+                        }
+
+                        <li>
+                            <a href="@Url.Action("Logout", "Account")" class="nav-link">
+                                Đăng xuất
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
